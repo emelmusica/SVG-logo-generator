@@ -1,0 +1,25 @@
+{
+  "name": "svg-logo-generator",
+  "version": "1.0.0",
+  "description": "This is the Module 10 Challenge SVG Logo Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emelmusica/SVG-logo-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emelmusica/SVG-logo-generator/issues"
+  },
+  "homepage": "https://github.com/emelmusica/SVG-logo-generator#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^9.2.8",
+    "path": "^0.12.7"
+  }
+}
