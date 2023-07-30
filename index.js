@@ -62,8 +62,8 @@ async function run() {
     const svgContent = shape.getSVGString(userInputs.shapeColor);
 
     // Calculate the position for centering the shape and text
-    const centerX = 300 / 2;
-    const centerY = 200 / 2;
+    const centerX = shapeSize / 2;
+    const centerY = shapeSize / 2;
 
     // Calculate the position for centering the text based on the font size and text length
     const fontSize = 30;
@@ -81,23 +81,34 @@ async function run() {
   <title>SVG Logo</title>
   <style>
     body {
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      height: 100px;
+    }
+    .svg-container {
+      width: ${shapeSize}px;
+      height: ${shapeSize}px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
     svg {
-      display: block;
+      display: inline;
+      align: center;
     }
   </style>
 </head>
 <body>
   <!-- Insert the SVG content directly -->
-  <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    ${svgContent}
-    <text x="${textX}" y="${textY}" fill="${userInputs.textColor}" font-size="${fontSize}" font-family="Arial">${userInputs.text}</text>
-  </svg>
+  <div class="svg-container">
+    <svg width="${shapeSize}" height="${shapeSize}" viewBox="${centerX - shapeSize / 2} ${centerY - shapeSize / 2} ${shapeSize} ${shapeSize}" xmlns="http://www.w3.org/2000/svg">
+      ${svgContent}
+      <text x="${textX}" y="${textY}" fill="${userInputs.textColor}" font-size="${fontSize}" font-family="Arial">${userInputs.text}</text>
+    </svg>
+  </div>
 </body>
 </html>
 `;
