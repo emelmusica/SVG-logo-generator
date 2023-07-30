@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const path = require('path');
-const { generateSVG } = require('./Lib/svggenerator.js');
+const fs = require('fs');
 const { Circle, Triangle, Square } = require('./Lib/shapes.js');
 
 async function promptUser() {
@@ -35,7 +35,7 @@ async function promptUser() {
 async function run() {
   try {
     const userInputs = await promptUser();
-    const fileName = 'logo.svg';
+    const fileName = 'logosvg.html';
     const outputPath = path.join(__dirname, fileName);
 
     // Create the shape based on the user's input
@@ -57,8 +57,29 @@ async function run() {
     // Generate the SVG string based on the shape and user's input
     const svgContent = shape.getSVGString(userInputs.shapeColor);
 
-    // Write the SVG content to the file
-    await generateSVG(outputPath, svgContent);
+    // Generate the HTML content with placeholders for user's selections
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Logo</title>
+</head>
+<body>
+  <!-- Use an inline SVG to render the content of the logo.svg file -->
+  <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Include the contents of logo.svg here -->
+    <g xmlns="http://www.w3.org/2000/svg">
+      ${svgContent}
+    </g>
+  </svg>
+</body>
+</html>
+`;
+
+    // Write the HTML content to the file
+    fs.writeFileSync(outputPath, htmlContent);
     console.log(`Generated ${fileName}`);
   } catch (error) {
     console.error('An error occurred:', error);
