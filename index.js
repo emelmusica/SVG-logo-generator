@@ -60,20 +60,20 @@ async function run() {
     // Generate the HTML content with the SVG content
     const htmlContent = `
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>SVG Logo</title>
-    </head>
-    <body>
-      <!-- Insert the SVG content directly -->
-      <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-        ${svgContent}
-        <text x="150" y="100" fill="${userInputs.textColor}" text-anchor="middle" font-size="30">${userInputs.text}</text>
-      </svg>
-    </body>
-    </html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Logo</title>
+</head>
+<body>
+  <!-- Insert the SVG content directly -->
+  <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${svgContent}
+    <text x="150" y="100" fill="${userInputs.textColor}" text-anchor="middle" font-size="30">${userInputs.text}</text>
+  </svg>
+</body>
+</html>
     `;
 
     // Write the HTML content to the file
