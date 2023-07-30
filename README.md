@@ -30,3 +30,6 @@ https://www.youtube.com/watch?v=MOJ3CDFvTqY&feature=youtu.be
 # Github Repository:
 
 https://github.com/emelmusica/SVG-logo-generator.git
+
+
+![Screen Grab of generated img](<Assets/Photos/Screen Shot of SVG Logo.png>)
