@@ -15,3 +15,15 @@ function generateSVG(filePath, svgContent) {
 module.exports = {
   generateSVG,
 };
+
+// Test the SVG generation for each shape
+const { Circle, Triangle, Square } = require('./shapes');
+
+const circle = new Circle(30);
+console.log(circle.getSVGString('blue'));
+
+const triangle = new Triangle(40);
+console.log(triangle.getSVGString('red'));
+
+const square = new Square(50);
+console.log(square.getSVGString('green'));

@@ -59,19 +59,21 @@ async function run() {
 
     // Generate the HTML content with the SVG content
     const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SVG Logo</title>
-</head>
-<body>
-  <!-- Insert the SVG content directly -->
-  ${svgContent}
-</body>
-</html>
-`;
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SVG Logo</title>
+      </head>
+      <body>
+        <!-- Insert the SVG content directly -->
+        <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+          ${svgContent}
+        </svg>
+      </body>
+      </html>
+    `;
 
     // Write the HTML content to the file
     fs.writeFileSync(outputPath, htmlContent);
@@ -82,5 +84,3 @@ async function run() {
 }
 
 run();
-
-// why aren't my fucking commits COMMITING?!?!?!?!?!
