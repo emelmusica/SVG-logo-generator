@@ -35,7 +35,7 @@ async function promptUser() {
 async function run() {
   try {
     const userInputs = await promptUser();
-    const fileName = 'logosvg.html';
+    const fileName = 'svglogo.html';
     const outputPath = path.join(__dirname, fileName);
 
     // Create the shape based on the user's input
@@ -57,7 +57,7 @@ async function run() {
     // Generate the SVG string based on the shape and user's input
     const svgContent = shape.getSVGString(userInputs.shapeColor);
 
-    // Generate the HTML content with placeholders for user's selections
+    // Generate the HTML content with the SVG content
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -67,13 +67,8 @@ async function run() {
   <title>SVG Logo</title>
 </head>
 <body>
-  <!-- Use an inline SVG to render the content of the logo.svg file -->
-  <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <!-- Include the contents of logo.svg here -->
-    <g xmlns="http://www.w3.org/2000/svg">
-      ${svgContent}
-    </g>
-  </svg>
+  <!-- Insert the SVG content directly -->
+  ${svgContent}
 </body>
 </html>
 `;
