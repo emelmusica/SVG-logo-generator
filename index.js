@@ -40,19 +40,15 @@ async function run() {
 
     // Create the shape based on the user's input
     let shape;
-    let shapeSize;
     switch (userInputs.shape) {
       case 'circle':
-        shapeSize = 160; // Adjust the size as needed to take up the majority of the page
-        shape = new Circle(shapeSize);
+        shape = new Circle(60); // Twice as big as the text
         break;
       case 'triangle':
-        shapeSize = 180; // Adjust the size as needed to take up the majority of the page
-        shape = new Triangle(shapeSize);
+        shape = new Triangle(80); // Twice as big as the text
         break;
       case 'square':
-        shapeSize = 200; // Adjust the size as needed to take up the majority of the page
-        shape = new Square(shapeSize);
+        shape = new Square(100); // Twice as big as the text
         break;
       default:
         throw new Error('Invalid shape selected');
@@ -60,16 +56,6 @@ async function run() {
 
     // Generate the SVG string based on the shape and user's input
     const svgContent = shape.getSVGString(userInputs.shapeColor);
-
-    // Calculate the position for centering the shape and text
-    const centerX = shapeSize / 2;
-    const centerY = shapeSize / 2;
-
-    // Calculate the position for centering the text based on the font size and text length
-    const fontSize = 30;
-    const textLength = userInputs.text.length * fontSize;
-    const textX = centerX - textLength / 2;
-    const textY = centerY + fontSize / 3;
 
     // Generate the HTML content with the SVG content and centered text
     const htmlContent = `
@@ -79,36 +65,13 @@ async function run() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SVG Logo</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100px;
-    }
-    .svg-container {
-      width: ${shapeSize}px;
-      height: ${shapeSize}px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    svg {
-      display: inline;
-      align: center;
-    }
-  </style>
 </head>
 <body>
   <!-- Insert the SVG content directly -->
-  <div class="svg-container">
-    <svg width="${shapeSize}" height="${shapeSize}" viewBox="${centerX - shapeSize / 2} ${centerY - shapeSize / 2} ${shapeSize} ${shapeSize}" xmlns="http://www.w3.org/2000/svg">
-      ${svgContent}
-      <text x="${textX}" y="${textY}" fill="${userInputs.textColor}" font-size="${fontSize}" font-family="Arial">${userInputs.text}</text>
-    </svg>
-  </div>
+  <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${svgContent}
+    <text x="150" y="100" fill="${userInputs.textColor}" text-anchor="middle" font-size="30">${userInputs.text}</text>
+  </svg>
 </body>
 </html>
 `;
