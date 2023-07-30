@@ -19,8 +19,9 @@
   "homepage": "https://github.com/emelmusica/SVG-logo-generator#readme",
   "dependencies": {
     "fs": "^0.0.1-security",
-    "inquirer": "^9.2.8",
-    "path": "^0.12.7"
+    "inquirer": "^7.3.3",
+    "path": "^0.12.7",
+    "require": "^2.4.20"
   },
   "devDependencies": {
     "jest": "^29.6.1"
