@@ -40,15 +40,19 @@ async function run() {
 
     // Create the shape based on the user's input
     let shape;
+    let shapeSize;
     switch (userInputs.shape) {
       case 'circle':
-        shape = new Circle(30);
+        shapeSize = 160; // Adjust the size as needed to take up the majority of the page
+        shape = new Circle(shapeSize);
         break;
       case 'triangle':
-        shape = new Triangle(40);
+        shapeSize = 180; // Adjust the size as needed to take up the majority of the page
+        shape = new Triangle(shapeSize);
         break;
       case 'square':
-        shape = new Square(50);
+        shapeSize = 200; // Adjust the size as needed to take up the majority of the page
+        shape = new Square(shapeSize);
         break;
       default:
         throw new Error('Invalid shape selected');
@@ -57,24 +61,34 @@ async function run() {
     // Generate the SVG string based on the shape and user's input
     const svgContent = shape.getSVGString(userInputs.shapeColor);
 
-    // Generate the HTML content with the SVG content
+    // Calculate the position for centering the shape and text
+    const centerX = 300 / 2;
+    const centerY = 200 / 2;
+
+    // Calculate the position for centering the text based on the font size and text length
+    const fontSize = 30;
+    const textLength = userInputs.text.length * fontSize;
+    const textX = centerX - textLength / 2;
+    const textY = centerY + fontSize / 3;
+
+    // Generate the HTML content with the SVG content and centered text
     const htmlContent = `
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SVG Logo</title>
 </head>
-<body>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
   <!-- Insert the SVG content directly -->
   <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${svgContent}
-    <text x="150" y="100" fill="${userInputs.textColor}" text-anchor="middle" font-size="30">${userInputs.text}</text>
+    <text x="${textX}" y="${textY}" fill="${userInputs.textColor}" font-size="${fontSize}" font-family="Arial">${userInputs.text}</text>
   </svg>
 </body>
 </html>
-    `;
+`;
 
     // Write the HTML content to the file
     fs.writeFileSync(outputPath, htmlContent);
