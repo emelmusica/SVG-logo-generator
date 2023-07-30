@@ -79,8 +79,21 @@ async function run() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SVG Logo</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    svg {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<body>
   <!-- Insert the SVG content directly -->
   <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${svgContent}
